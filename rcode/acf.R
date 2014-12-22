@@ -54,6 +54,13 @@ for(pid in sort(unique(data$portfolios_id))){
         arimaforecast=forecast.Arima(arimamodel,h=10)
         plot.forecast(arimaforecast,main=paste(i,title),xlim=xlims,ylim=ylims)
         points(tt2[,"counter"],tt2[,"value"],col="red")
+        a=(data.frame(arimaforecast$upper)[,2]-data.frame(arimaforecast$lower)[,2])
+        b=4*sd(ts)
+        b=100
+        a>b
+        a
+        b
+        
       }
     }     
   }
