@@ -6,7 +6,7 @@ def forecast(series,n):
 	# print series
 	nseries={}
 
-	series=runforecast(series,n)
+	series=runforecast2(series,n)
 	nseries=fill_series(series,i=(len(series['point'])-n))
 	return nseries
 
@@ -40,7 +40,7 @@ def history(series,n):
 	felements={}
 	for i in range(0,(len(series['point'])+n)):
 		series2=fill_series(series,j=i)
-		elements2=runforecast(series2,n)
+		elements2=runforecast2(series2,n)
 		elements2=fill_series(elements2,i=i,j=(i+1))
 		elements2['actual_value']=series['value'][i:(i+1)]
 		# print "elements 2 "+str(i)
@@ -57,6 +57,81 @@ def fill_series(ser,i=None,j=None):
 	for key in ser.iterkeys():
 		ser2[key]=ser[key][i:j]
 	return ser2
+
+
+
+
+def arima_aic(values,order):
+	fit=ARIMA(values, order=order).fit()
+	return fit.aic
+
+def autoarima(y):
+	aics={}
+	for i in range(1,5):
+		for j in range(1,5):
+			for k in range(1,5):
+				try:
+					aic=arima_aic(y,(i,j,k))
+					print(' '.join(['i','j','k','aic']))
+					print(' '.join(str([i,j,k,aic])))
+					aics[(i,j,k)]=aic
+				except:
+					pass
+	first=True
+	for key in aics.iterkeys():
+		val=aics[key]
+		if first:
+			bestaic=val
+			bestkey=key
+			first=False
+		else:
+			if val<bestaic:
+				bestaic=val
+				bestkey=key
+		print(str(key)+' '+str(val))
+
+	if first:
+		print('no best aic found')
+		return 0
+	else:
+		print('bestaic '+str(bestaic)+' bestkey '+str(bestkey))
+		return bestkey
+
+def runforecast2(series,n,minrequired=5,lookback=2):
+	if len(series['value'])<minrequired:
+		return series
+	
+	bestkey=autoarima(series['value'])
+	if(bestkey!=0):
+		maxpoint=max(series['point'])
+		model=ARIMA(y, order=bestkey).fit()
+		predict_model=model.predict((maxpoint+1),(maxpoint+n),dynamic=True)
+		print('\npredict')
+		print(predict_model)
+		series['point'].extend(range((maxpoint+1),(maxpoint+n+1)))
+		series['value'].extend(predict_model.tolist())
+	return series
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 def readTextFile(filename="observations.csv"):
 	header=False
