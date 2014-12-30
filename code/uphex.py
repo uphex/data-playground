@@ -7,10 +7,14 @@ from statsmodels.tsa.arima_model import ARIMA
 		
 def main():
 	timeseries={}
-	timeseries['point']=[0,1,2,3,4,5,6,7,8,9]
-	timeseries['value']=[0.0,10.0,5.0,100.0,50.0,40.0,23.0,20.0,23.0,22.0]
+	timeseries['value']=readTextFile(15)
+	timeseries['point']=range(1,(len(timeseries['value'])+1))
+	print(len(timeseries['value']))
+        print(len(timeseries['point']))
 
-	elements=history(timeseries,2)
+	#timeseries['value']=[0.0,10.0,5.0,100.0,50.0,40.0,23.0,20.0,23.0,22.0]
+
+	elements=forecast(timeseries,2)
 	print(elements)
 	# prediction=timeseries
 	prediction={}

@@ -1,6 +1,10 @@
 import datetime
+import numpy as np
+from statsmodels.tsa.arima_process import arma_generate_sample
+from statsmodels.tsa.arima_model import ARIMA
 
 dir="/cygdrive/c/Users/cjacobik/Desktop/Personal/uphex"
+dir="/home/cjacobik/uphex"
 
 def forecast(series,n):
 	# print series
@@ -66,16 +70,18 @@ def arima_aic(values,order):
 	return fit.aic
 
 def autoarima(y):
+	print('autoarima')
 	aics={}
-	for i in range(1,5):
-		for j in range(1,5):
-			for k in range(1,5):
+	for i in range(2,3):
+		for j in range(1,2):
+			for k in range(2,3):
 				try:
 					aic=arima_aic(y,(i,j,k))
 					print(' '.join(['i','j','k','aic']))
 					print(' '.join(str([i,j,k,aic])))
 					aics[(i,j,k)]=aic
 				except:
+					print('passing')
 					pass
 	first=True
 	for key in aics.iterkeys():
@@ -133,17 +139,18 @@ def runforecast2(series,n,minrequired=5,lookback=2):
 
 
 
-def readTextFile(filename="observations.csv"):
+def readTextFile(metric,filename="observations.csv"):
 	header=False
 	dirfilename=dir+"/"+filename
-	d={}
+	d=[]
 	with open(dirfilename,'rb') as source:
 		for line in source:
 			if header:
-				fields=line.split(',')
-				print fields[1]
+				fields=line.rstrip().split(',')
 				fields[1]=datetime.datetime.strptime(fields[1][0:19],"%Y-%m-%d %H:%M:%S")
-				d[fields[4],fields[1]]=fields[2]
+				if int(fields[4])==metric:
+					d.append(fields[2])
+				
 			header=True
 	print d
 	return d
