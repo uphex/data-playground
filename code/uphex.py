@@ -14,14 +14,17 @@ def main():
 
 	#timeseries['value']=[0.0,10.0,5.0,100.0,50.0,40.0,23.0,20.0,23.0,22.0]
 
-	elements=forecast(timeseries,2)
-	print(elements)
+	#elements=forecast(timeseries,10)
+	#print(elements)
 	# prediction=timeseries
 	prediction={}
-	prediction['point']=[1000,1005,1010,1015,1020,1025]
-	prediction['predictions']=[0]*len(prediction['point']) 
-	prediction['expected_value']=[0]*len(prediction['point']) 
-	prediction['actual_value']=[None]*len(prediction['point']) 
+	prediction['value']=readTextFile(15)
+	prediction['actual_value']=prediction['value']
+	prediction['point']=range(1,(len(prediction['actual_value'])+1))
+	prediction['predictions']=[0]*(len(prediction['actual_value'])+1) 
+	prediction['expected_value']=[0]*(len(prediction['actual_value'])+1)
+	elements=history(prediction,10)
+	print(elements)
 	# print timeseries 
 	# print type(timeseries)
 	# print timeseries.keys()

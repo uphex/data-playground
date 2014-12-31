@@ -47,8 +47,8 @@ def history(series,n):
 		elements2=runforecast2(series2,n)
 		elements2=fill_series(elements2,i=i,j=(i+1))
 		elements2['actual_value']=series['value'][i:(i+1)]
-		# print "elements 2 "+str(i)
-		# print elements2
+		print("elements 2 ")
+		print(elements2)
 		felements=appendelements(felements,elements2)
 	return felements
 
@@ -72,9 +72,9 @@ def arima_aic(values,order):
 def autoarima(y):
 	print('autoarima')
 	aics={}
-	for i in range(2,3):
-		for j in range(1,2):
-			for k in range(2,3):
+	for i in range(1,5):
+		for j in range(1,5):
+			for k in range(1,5):
 				try:
 					aic=arima_aic(y,(i,j,k))
 					print(' '.join(['i','j','k','aic']))
@@ -110,8 +110,9 @@ def runforecast2(series,n,minrequired=5,lookback=2):
 	bestkey=autoarima(series['value'])
 	if(bestkey!=0):
 		maxpoint=max(series['point'])
-		model=ARIMA(y, order=bestkey).fit()
-		predict_model=model.predict((maxpoint+1),(maxpoint+n),dynamic=True)
+		model=ARIMA(series['value'], order=bestkey).fit()
+		#predict_model=model.predict((maxpoint+1),(maxpoint+n-1))
+		predict_model=model.forecast(n)[0]
 		print('\npredict')
 		print(predict_model)
 		series['point'].extend(range((maxpoint+1),(maxpoint+n+1)))
@@ -149,7 +150,7 @@ def readTextFile(metric,filename="observations.csv"):
 				fields=line.rstrip().split(',')
 				fields[1]=datetime.datetime.strptime(fields[1][0:19],"%Y-%m-%d %H:%M:%S")
 				if int(fields[4])==metric:
-					d.append(fields[2])
+					d.append(float(fields[2]))
 				
 			header=True
 	print d
