@@ -66,7 +66,7 @@ def fill_series(ser,i=None,j=None):
 
 
 def arima_aic(values,order):
-	fit=ARIMA(values, order=order).fit()
+	fit=ARIMA(values, order=order).fit(disp=False,skip_hessian=True,full_output=False)
 	return fit.aic
 
 def autoarima(y):
@@ -110,7 +110,7 @@ def runforecast2(series,n,minrequired=5,lookback=2):
 	bestkey=autoarima(series['value'])
 	if(bestkey!=0):
 		maxpoint=max(series['point'])
-		model=ARIMA(series['value'], order=bestkey).fit()
+		model=ARIMA(series['value'], order=bestkey).fit(disp=False,skip_hessian=True,full_output=False)
 		#predict_model=model.predict((maxpoint+1),(maxpoint+n-1))
 		predict_model=model.forecast(n)[0]
 		print('\npredict')
