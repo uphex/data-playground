@@ -93,15 +93,16 @@ def autoarima(y):
 	first=True
 	for key in aics.iterkeys():
 		val=aics[key]
-		if first:
-			bestaic=val
-			bestkey=key
-			first=False
-		else:
-			if val<bestaic and not (isNaN(val)):
+		if not (isNaN(val)):
+			if first:
 				bestaic=val
 				bestkey=key
-		print(str(key)+' '+str(val))
+				first=False
+			else:
+				if val<bestaic:
+					bestaic=val
+					bestkey=key
+			print(str(key)+' '+str(val))
 
 	if first:
 		print('no best aic found')
