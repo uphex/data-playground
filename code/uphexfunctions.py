@@ -2,17 +2,29 @@ import datetime
 import numpy as np
 import statsmodels.api as sm
 from statsmodels.tsa.arima_model import ARIMA
-
+import sys
+import copy
 dir="/cygdrive/c/Users/cjacobik/Desktop/Personal/uphex"
 dir="/home/cjacobik/uphex"
 
 def forecast(series,n):
-	# print series
-	nseries={}
+	series=timeseriestoseries(series)
 
 	series=runarimaforecast(series,n)
 	nseries=fill_series(series,i=(len(series['point'])-n))
-	return nseries
+	nseries['expected_value']=copy.deepcopy(nseries['value'])
+	prediction=keystoreturn(nseries,('expected_value','actual_value','predictions','point'))
+	print('final forecast series')
+	print(prediction)	
+	return prediction
+
+def keystoreturn(ser,keys):
+	tobereturned={}
+	for key in ser.iterkeys():
+		if key in keys:
+			tobereturned[key]=copy.deepcopy(ser[key])
+	return tobereturned
+
 
 def runforecast(series,n,minrequired=4,lookback=2):
 	start=len(series['point'])
@@ -41,6 +53,7 @@ def appendelements(series,appendseries):
 	return series
 
 def history(series,n):
+	series=timeseriestoseries(series)
 	print('history function series')
 	print(series)
 	returnelements={}
@@ -51,15 +64,18 @@ def history(series,n):
 		elements=runarimaforecast(series2,n)
 		print("history elements")
 		print(elements)
-		temp_predictions=elements['value']
+		#temp_predictions=elements['value']
 		elements=fill_series(elements,i=i,j=(i+1))
 		elements['actual_value']=series['value'][i:(i+1)]
-		elements['predictions'].append(temp_predictions)
+		#elements['predictions'].append(temp_predictions)
 		print("history elements")
 		print(elements)
 		elements['expected_value']=elements['value']
 		returnelements=appendelements(returnelements,elements)
-	return returnelements
+	prediction=keystoreturn(returnelements,('expected_value','actual_value','predictions','point'))
+	print('history prediction')
+	print(prediction)
+	return prediction
 
 
 def fill_series(ser,i=None,j=None):
@@ -123,15 +139,30 @@ def runarimaforecast(series,n,minrequired=4,lookback=2):
 		maxpoint=max(series['point'])
 		model=ARIMA(series['value'], order=bestkey).fit()
 		predict_model=model.forecast(n)
+		confidence_intervals=predict_model[2:len(predict_model)][0]
+		print('confidence_intervals')
+		print(confidence_intervals)
+		
+		series['predictions'].extend(confidence_intervals.tolist())
 		print('\npredict')
 		print(predict_model[0])
 		series['point'].extend(range((maxpoint+1),(maxpoint+n+1)))
 		series['value'].extend(predict_model[0].tolist())
+	print('series')
+	print(series)
 	return series
 
 def isNaN(x):
     return str(float(x)).lower() == 'nan'
 
+def timeseriestoseries(ts):
+	ts2={}
+	ts2['value']=ts['value']
+	ts2['point']=ts['point']
+	ts2['actual_value']=copy.deepcopy(ts['value'])
+        ts2['predictions']=[0]*(len(ts2['actual_value']))
+        ts2['expected_value']=[0]*(len(ts2['actual_value']))
+	return ts2
 
 
 

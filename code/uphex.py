@@ -17,14 +17,10 @@ def main():
 	elements=forecast(timeseries,10)
 	print("forecast elements")
 	print(elements)
-	# prediction=timeseries
-	prediction={}
-	prediction['value']=readTextFile(15)[0:20]
-	prediction['actual_value']=prediction['value']
-	prediction['point']=range(1,(len(prediction['actual_value'])+1))
-	prediction['predictions']=[0]*(len(prediction['actual_value'])+1) 
-	prediction['expected_value']=[0]*(len(prediction['actual_value'])+1)
-	elements=history(prediction,10)
+        timeseries={}
+        timeseries['value']=readTextFile(15)[0:20]
+        timeseries['point']=range(1,(len(timeseries['value'])+1))
+	elements=history(timeseries,10)
 	print("history elements")
 	print(elements)
 	# print timeseries 
