@@ -1,7 +1,7 @@
 from uphexfunctions import *
 #from __future__ import print_function
 import numpy as np
-from statsmodels.tsa.arima_process import arma_generate_sample
+import statsmodels.api as sm
 from statsmodels.tsa.arima_model import ARIMA
 
 		
@@ -14,16 +14,18 @@ def main():
 
 	#timeseries['value']=[0.0,10.0,5.0,100.0,50.0,40.0,23.0,20.0,23.0,22.0]
 
-	#elements=forecast(timeseries,10)
-	#print(elements)
+	elements=forecast(timeseries,10)
+	print("forecast elements")
+	print(elements)
 	# prediction=timeseries
 	prediction={}
-	prediction['value']=readTextFile(15)
+	prediction['value']=readTextFile(15)[0:20]
 	prediction['actual_value']=prediction['value']
 	prediction['point']=range(1,(len(prediction['actual_value'])+1))
 	prediction['predictions']=[0]*(len(prediction['actual_value'])+1) 
 	prediction['expected_value']=[0]*(len(prediction['actual_value'])+1)
 	elements=history(prediction,10)
+	print("history elements")
 	print(elements)
 	# print timeseries 
 	# print type(timeseries)
