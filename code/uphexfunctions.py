@@ -14,8 +14,8 @@ def forecast(series,n):
 	nseries=fill_series(series,i=(len(series['point'])-n))
 	nseries['expected_value']=copy.deepcopy(nseries['value'])
 	prediction=keystoreturn(nseries,('expected_value','actual_value','predictions','point'))
-	print('final forecast series')
-	print(prediction)	
+	#print('final forecast series')
+	#print(prediction)	
 	return prediction
 
 def keystoreturn(ser,keys):
@@ -28,14 +28,14 @@ def keystoreturn(ser,keys):
 
 def runforecast(series,n,minrequired=4,lookback=2):
 	start=len(series['point'])
-	# print series
+	#print series
 
 	if len(series['point'])<minrequired:
 		return series
 
 	for i in range(start,start+n):
 		temp=series['value'][max(i-lookback,0):i]
-		# print temp
+		#print temp
 		series['point'].append(max(series['point'][(i-1):])+1)
 		series['value'].append(float(sum(temp))/len(temp))
 	return series
@@ -54,27 +54,27 @@ def appendelements(series,appendseries):
 
 def history(series,n):
 	series=timeseriestoseries(series)
-	print('history function series')
-	print(series)
+	#print('history function series')
+	#print(series)
 	returnelements={}
 	for i in range(0,(len(series['point'])+n)):
 		series2=fill_series(series,j=i)
-		print("history series2")
-		print(series2)
+		#print("history series2")
+		#print(series2)
 		elements=runarimaforecast(series2,n)
-		print("history elements")
-		print(elements)
+		#print("history elements")
+		#print(elements)
 		#temp_predictions=elements['value']
 		elements=fill_series(elements,i=i,j=(i+1))
 		elements['actual_value']=series['value'][i:(i+1)]
 		#elements['predictions'].append(temp_predictions)
-		print("history elements")
-		print(elements)
+		#print("history elements")
+		#print(elements)
 		elements['expected_value']=elements['value']
 		returnelements=appendelements(returnelements,elements)
 	prediction=keystoreturn(returnelements,('expected_value','actual_value','predictions','point'))
-	print('history prediction')
-	print(prediction)
+	#print('history prediction')
+	#print(prediction)
 	return prediction
 
 
@@ -93,7 +93,7 @@ def arima_aic(values,order):
 	return fit.aic
 
 def autoarima(y):
-	print('autoarima')
+	#print('autoarima')
 	aics={}
 	for i in range(0,3):
 		for j in range(0,3):
@@ -118,38 +118,38 @@ def autoarima(y):
 				if val<bestaic:
 					bestaic=val
 					bestkey=key
-			print(str(key)+' '+str(val))
+			#print(str(key)+' '+str(val))
 
 	if first:
-		print('no best aic found')
+		#print('no best aic found')
 		return 0
 	else:
-		print('bestaic '+str(bestaic)+' bestkey '+str(bestkey))
+		#print('bestaic '+str(bestaic)+' bestkey '+str(bestkey))
 		return bestkey
 
 def runarimaforecast(series,n,minrequired=4,lookback=2):
 	if len(series['value'])<minrequired:
 		return series
-	print("series")
-	print(series)	
+	#print("series")
+	#print(series)	
 	bestkey=autoarima(series['value'])
-	print("bestkey")
-	print(bestkey)
+	#print("bestkey")
+	#print(bestkey)
 	if(bestkey!=0):
 		maxpoint=max(series['point'])
 		model=ARIMA(series['value'], order=bestkey).fit()
 		predict_model=model.forecast(n)
 		confidence_intervals=predict_model[2:len(predict_model)][0]
-		print('confidence_intervals')
-		print(confidence_intervals)
+		#print('confidence_intervals')
+		#print(confidence_intervals)
 		
 		series['predictions'].extend(confidence_intervals.tolist())
-		print('\npredict')
-		print(predict_model[0])
+		#print('\npredict')
+		#print(predict_model[0])
 		series['point'].extend(range((maxpoint+1),(maxpoint+n+1)))
 		series['value'].extend(predict_model[0].tolist())
-	print('series')
-	print(series)
+	#print('series')
+	#print(series)
 	return series
 
 def isNaN(x):
@@ -195,6 +195,6 @@ def readTextFile(metric,filename="observations.csv"):
 					d.append(float(fields[2]))
 				
 			header=True
-	print d
+	#print d
 	return d
 
