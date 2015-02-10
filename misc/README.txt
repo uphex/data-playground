@@ -1,4 +1,4 @@
-Run either the uphex.py or uphexunittests.py. These scripts call uphexfunctions.py which contains the forecast, history and a few other needed functions. Please see the dependicies.txt file for the python libraries and versions installed when I ran these. 
+Run either the uphex.py or uphexunittests.py. These scripts call uphexfunctions.py which contains the forecast, history and a few other needed functions. Please see the dependicies.txt file for the python libraries and versions installed when I ran these.
 
 Below is a sample calling uphex.py. I haven't been able to find a way to suppress the ConvergenceWarnings's which are a result of the brute force auto arima that had to be developed since Python doesn't have an equivalent of R's auto.arima(). Also, it still prints out the model fits. Not sure if there is a way to suppress that either. Note that I've limited how much I print in the README.txt file.
 
@@ -47,9 +47,9 @@ F     = final function value
 
    N    Tit     Tnf  Tnint  Skip  Nact     Projg        F
     1      0      1      0     0     0   0.000D+00   5.112D+00
-  F =   5.1121205034290087     
+  F =   5.1121205034290087
 
-CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL            
+CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL
 
  Cauchy                time 0.000E+00 seconds.
  Subspace minimization time 0.000E+00 seconds.
@@ -94,9 +94,9 @@ F     = final function value
 
    N    Tit     Tnf  Tnint  Skip  Nact     Projg        F
     3     13     17      1     0     0   0.000D+00   5.399D+00
-  F =   5.3987517363338551     
+  F =   5.3987517363338551
 
-CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL            
+CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL
 
  Cauchy                time 0.000E+00 seconds.
  Subspace minimization time 7.915E-05 seconds.
@@ -132,9 +132,9 @@ F     = final function value
 
    N    Tit     Tnf  Tnint  Skip  Nact     Projg        F
     2      5      7      1     0     0   0.000D+00   5.003D+00
-  F =   5.0033688523517839     
+  F =   5.0033688523517839
 
-CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL            
+CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL
 
  Cauchy                time 0.000E+00 seconds.
  Subspace minimization time 2.193E-05 seconds.
@@ -168,9 +168,9 @@ F     = final function value
 
    N    Tit     Tnf  Tnint  Skip  Nact     Projg        F
     1      0      1      0     0     0   0.000D+00   4.628D+00
-  F =   4.6279170444087843     
+  F =   4.6279170444087843
 
-CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL            
+CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL
 
  Cauchy                time 0.000E+00 seconds.
  Subspace minimization time 0.000E+00 seconds.

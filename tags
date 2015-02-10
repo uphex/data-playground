@@ -1,0 +1,56 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+ARIMA	code/uphex.py	/^from statsmodels.tsa.arima_model import ARIMA$/;"	i
+ARIMA	code/uphexfunctions.py	/^from statsmodels.tsa.arima_model import ARIMA$/;"	i
+TestSuite	code/uphexunittest.py	/^class TestSuite(unittest.TestCase):$/;"	c
+appendelements	code/uphexfunctions.py	/^def appendelements(series,appendseries):$/;"	f
+arima_aic	code/uphexfunctions.py	/^def arima_aic(values,order):$/;"	f
+autoarima	code/uphexfunctions.py	/^def autoarima(y):$/;"	f
+copy	code/uphexfunctions.py	/^import copy$/;"	i
+datetime	code/uphexfunctions.py	/^import datetime$/;"	i
+dir	code/uphexfunctions.py	/^dir="\/cygdrive\/c\/Users\/cjacobik\/Desktop\/Personal\/uphex"$/;"	v
+dir	code/uphexfunctions.py	/^dir="\/home\/cjacobik\/uphex"$/;"	v
+fill_series	code/uphexfunctions.py	/^def fill_series(ser,i=None,j=None):$/;"	f
+forecast	code/uphexfunctions.py	/^def forecast(series,n):$/;"	f
+history	code/uphexfunctions.py	/^def history(series,n):$/;"	f
+isNaN	code/uphexfunctions.py	/^def isNaN(x):$/;"	f
+keystoreturn	code/uphexfunctions.py	/^def keystoreturn(ser,keys):$/;"	f
+main	code/uphex.py	/^def main():$/;"	f
+np	code/uphex.py	/^import numpy as np$/;"	i
+np	code/uphexfunctions.py	/^import numpy as np$/;"	i
+pip	code/dependencies.py	/^import pip$/;"	i
+readTextFile	code/uphexfunctions.py	/^def readTextFile(metric,filename="observations.csv"):$/;"	f
+req	code/dependencies.py	/^        req = dist.as_requirement()$/;"	v
+runarimaforecast	code/uphexfunctions.py	/^def runarimaforecast(series,n,minrequired=4,lookback=2):$/;"	f
+runforecast	code/uphexfunctions.py	/^def runforecast(series,n,minrequired=4,lookback=2):$/;"	f
+sm	code/uphex.py	/^import statsmodels.api as sm$/;"	i
+sm	code/uphexfunctions.py	/^import statsmodels.api as sm$/;"	i
+statsmodels	code/uphex.py	/^import statsmodels.api as sm$/;"	i
+statsmodels	code/uphexfunctions.py	/^import statsmodels.api as sm$/;"	i
+sys	code/uphexfunctions.py	/^import sys$/;"	i
+test_actual_value_history_elements	code/uphexunittest.py	/^	def test_actual_value_history_elements(self):$/;"	m	class:TestSuite
+test_arima_aic_fit	code/uphexunittest.py	/^	def test_arima_aic_fit(self):$/;"	m	class:TestSuite
+test_arima_aic_fit2	code/uphexunittest.py	/^	def test_arima_aic_fit2(self):$/;"	m	class:TestSuite
+test_autoarima_bestkey	code/uphexunittest.py	/^	def test_autoarima_bestkey(self):$/;"	m	class:TestSuite
+test_forecast_actual_value	code/uphexunittest.py	/^	def test_forecast_actual_value(self):$/;"	m	class:TestSuite
+test_forecast_expected_value	code/uphexunittest.py	/^	def test_forecast_expected_value(self):$/;"	m	class:TestSuite
+test_forecast_predictions	code/uphexunittest.py	/^	def test_forecast_predictions(self):$/;"	m	class:TestSuite
+test_history_actual_value	code/uphexunittest.py	/^	def test_history_actual_value(self):$/;"	m	class:TestSuite
+test_history_expected_value	code/uphexunittest.py	/^	def test_history_expected_value(self):$/;"	m	class:TestSuite
+test_history_predictions	code/uphexunittest.py	/^	def test_history_predictions(self):$/;"	m	class:TestSuite
+test_isNaN	code/uphexunittest.py	/^	def test_isNaN(self):$/;"	m	class:TestSuite
+test_isNaN2	code/uphexunittest.py	/^	def test_isNaN2(self):$/;"	m	class:TestSuite
+test_keys_appendelements	code/uphexunittest.py	/^	def test_keys_appendelements(self):$/;"	m	class:TestSuite
+test_keys_history	code/uphexunittest.py	/^	def test_keys_history(self):$/;"	m	class:TestSuite
+test_minrequired_runforecast_elements	code/uphexunittest.py	/^	def test_minrequired_runforecast_elements(self):$/;"	m	class:TestSuite
+test_number_forecast_elements	code/uphexunittest.py	/^	def test_number_forecast_elements(self):$/;"	m	class:TestSuite
+test_number_history_elements	code/uphexunittest.py	/^	def test_number_history_elements(self):$/;"	m	class:TestSuite
+test_point_forecast_elements	code/uphexunittest.py	/^	def test_point_forecast_elements(self):$/;"	m	class:TestSuite
+test_point_history_elements	code/uphexunittest.py	/^	def test_point_history_elements(self):$/;"	m	class:TestSuite
+test_value_appendelements	code/uphexunittest.py	/^	def test_value_appendelements(self):$/;"	m	class:TestSuite
+timeseriestoseries	code/uphexfunctions.py	/^def timeseriestoseries(ts):$/;"	f
+unittest	code/uphexunittest.py	/^import unittest$/;"	i
