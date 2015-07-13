@@ -46,11 +46,12 @@ def metrics_confusion_matrix(confusionh):
 		if(predicted=='Yes'):
 			if(predicted==actual): hit_rate_num+=value
 			hit_rate_denom+=value
-		print predicted+' '+actual+' '+str(value)
+		# print predicted+' '+actual+' '+str(value)
 	accuracy_rate=float(accuracy_rate_num)/accuracy_rate_denom if accuracy_rate_denom!=0 else 0
 	hit_rate=float(hit_rate_num)/hit_rate_denom if hit_rate_denom!=0 else 0
 	print
-	print str(accuracy_rate)+' '+str(hit_rate)
+	print 'acuracy rate '+str(accuracy_rate)
+	print 'hit rate '+str(hit_rate)
 	return(accuracy_rate,hit_rate)
 
 def main():
