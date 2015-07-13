@@ -27,6 +27,7 @@ def read_and_fill_file(file,confusionh):
 	f.close()
 	return(confusionh)
 
+#generate metrics based off confusion matrix
 def metrics_confusion_matrix(confusionh):
 	#initiate variables
 	accuracy_rate_num=0
